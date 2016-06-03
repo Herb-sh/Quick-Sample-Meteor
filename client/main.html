@@ -1,0 +1,30 @@
+<head>
+  <title>Notes App</title>
+</head>
+
+<body>
+  <h1>Notes</h1>
+
+  {{> notes}}
+  {{> loginButtons}}
+
+</body>
+
+
+<template name="notes">
+
+  <form id="noteForm">
+    <input id="noteInputNew" name="noteInputNew" placeholder="Enter"/>
+    <button> Add </button>
+  </form>
+
+  <ul>
+    {{#each notes}}
+       <li>{{label}}</li>
+    {{/each}}
+  </ul>
+
+</template>
+
+
+<template name="note"></template>
