@@ -7,7 +7,11 @@ Meteor.startup(() => {
 });
 
 Meteor.publish('notes', function() {
-    return NoteItems.find({});
+    return NoteItems.find({
+      $or : [
+        { userId : this.userId }
+      ]
+    });
 })
 
 Meteor.methods({

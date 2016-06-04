@@ -2,32 +2,86 @@
   <title>Notes App</title>
 </head>
 
-<body>
-  <h1>Notes</h1>
-
-  {{> notes}}
-  {{> loginButtons}}
+<body class="container">
 
 </body>
 
+<template name="app">
+</template>
 
-<template name="notes">
+<!-- DASHBOARD -->
+<template name="home">
 
-  <form id="noteForm">
-    <input id="noteInputNew" name="noteInputNew" placeholder="Enter a quick note"/>
-    <button> Add </button>
-  </form>
+ <div class="well bs-component">
 
-  <ul>
-    {{#each notes}}
-       <li>
-         {{label}}
-         <button class="remove-note"> remove </button>
-       </li>
-    {{/each}}
-  </ul>
+   <div class="jumbotron">
+       <h1 style=" text-align: center; margin-bottom: 50px;">Note App</h1>
+       <p class="bs-component">
+           <a href="/noteopen/true/false" class="btn btn-success btn-lg btn-block">
+               Create a note
+           </a>
+           <div id="source-button" class="btn btn-success btn-xs" style="display: none;">&lt; &gt;</div>
+       </p>
+       <p class="bs-component">
+           <a href="/notelist" class="btn btn-primary btn-lg btn-block">
+              My notes
+           </a>
+           <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
+       </p>
+   </div>
+
+
+  </div>
+  <div>{{> loginButtons}}</div>
 
 </template>
 
+<!--NOTE LIST -->
+<template name="notelist">
 
-<template name="note"></template>
+  <a href="/"> Dashboard </a>
+  <a href="/noteopen"> Note details </a>
+
+  {{#each notes}}
+    <div class="panel panel-primary">
+      <div class="panel-body">
+        {{label}}
+        <div class="pull-right btn-group">
+          <button class="btn btn-primary edit-note" style="margin-right:15px;"> edit </button>
+          <button class="btn btn-primary remove-note"> remove </button>
+        </div>
+      </div>
+   </div>
+  {{/each}}
+
+   <div>{{> loginButtons}}</div>
+</template>
+
+<!-- NOTE DETAILS -->
+<template name="noteopen">
+  <div class="well">
+      <a href="/"> Dashboard </a>
+      <a href="/notelist"> My notes </a>
+      <form id="noteForm">
+        <div class="form-group">
+            <label for="noteInputNew" class="col-lg-2 control-label">Note title</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="noteInputNew" name="noteInputNew" placeholder="Enter a quick note">
+            </div>
+        </div>
+        <div class="form-group">
+              <label for="textArea" class="col-lg-2 control-label">Note Content</label>
+              <div class="col-lg-10">
+                    <textarea class="form-control" rows="3" id="noteContent" name="noteContent"></textarea>
+              </div>
+        </div>
+        <div class="col-lg-10 col-lg-offset-2 clearfix">
+                      <div class="pull-right btn-group">
+                        <button type="reset" class="btn btn-default">clear</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                      </div>
+                    </div>
+      </form>
+    </div>
+  <div>{{> loginButtons}}</div>
+</template>
