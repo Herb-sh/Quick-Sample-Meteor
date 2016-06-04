@@ -14,13 +14,16 @@
 <template name="notes">
 
   <form id="noteForm">
-    <input id="noteInputNew" name="noteInputNew" placeholder="Enter"/>
+    <input id="noteInputNew" name="noteInputNew" placeholder="Enter a quick note"/>
     <button> Add </button>
   </form>
 
   <ul>
     {{#each notes}}
-       <li>{{label}}</li>
+       <li>
+         {{label}}
+         <button class="remove-note"> remove </button>
+       </li>
     {{/each}}
   </ul>
 
