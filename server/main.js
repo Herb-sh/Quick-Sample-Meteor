@@ -15,23 +15,27 @@ Meteor.publish('notes', function() {
 })
 
 Meteor.methods({
-  // 'notes.insert'
     'notes.insert' : function( newNote ){
 
-     console.log( Meteor.userId() );
-     // Make sure the user is logged in before inserting a task
+      console.log('notes.insert');
+      console.log(newNote);
+
+      var titlee = newNote.title;
+      var contentt = newNote.content;
+  
      NoteItems.insert({
-           'label' : newNote,
+           title :titlee,
+           content : contentt,
            'time' : Date.now(),
            'userId' : Meteor.userId()
      });
 
    },
-   'notes.update' : function(){
-
+   'notes.update' : function( id, note ){
+     console.log("server",id, note);
+      NoteItems.update( id, { $set : { title : note.title, content : note.content, time : Date.now() }} );
    },
    'notes.remove' : function( item ){
-     console.log("remove")
       NoteItems.remove( item._id )
    }
 });
