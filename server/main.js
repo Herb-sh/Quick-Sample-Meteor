@@ -2,9 +2,6 @@
 
 NoteItems = new Mongo.Collection('noteitems');
 
-Meteor.startup(() => {
-  // code to run on server at startup
-});
 
 Meteor.publish('notes', function() {
     return NoteItems.find({
@@ -17,12 +14,12 @@ Meteor.publish('notes', function() {
 Meteor.methods({
     'notes.insert' : function( newNote ){
 
-      console.log('notes.insert');
-      console.log(newNote);
+      // console.log('notes.insert');
+      // console.log(newNote);
 
       var titlee = newNote.title;
       var contentt = newNote.content;
-  
+
      NoteItems.insert({
            title :titlee,
            content : contentt,
@@ -32,7 +29,7 @@ Meteor.methods({
 
    },
    'notes.update' : function( id, note ){
-     console.log("server",id, note);
+    //  console.log("server",id, note);
       NoteItems.update( id, { $set : { title : note.title, content : note.content, time : Date.now() }} );
    },
    'notes.remove' : function( item ){
