@@ -1,3 +1,3 @@
 # notes (Old)
 
-Getting to know Meteor. A simple app
+Getting to know Meteor. A demo app
